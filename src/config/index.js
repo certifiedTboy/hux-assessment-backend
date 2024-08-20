@@ -2,8 +2,13 @@ require("dotenv").config();
 
 module.exports = {
   PORT: process.env.PORT,
-  MONGO_URI:
-    process.env.NODE_ENV === "development"
-      ? process.env.DEVELOPMENT_MONGO_URI
-      : process.env.PRODUCTION_MONGO_URI,
+  MONGO_URI: process.env.DEVELOPMENT_MONGO_URI,
+  EMAIL_CLIENT_ID: process.env.EMAIL_CLIENT_ID,
+  EMAIL_CLIENT_SECRET: process.env.EMAIL_CLIENT_SECRET,
+  EMAIL_CLIENT_REFRESH_TOKEN: process.env.EMAIL_CLIENT_REFRESH_TOKEN,
+  EMAIL_CLIENT_ACCESS_TOKEN: process.env.EMAIL_CLIENT_ACCESS_TOKEN,
+  OAUTH_REDIRECT_URI: process.env.OAUTH_REDIRECT_URI,
+  EMAIL_USER: process.env.EMAIL_USER,
+  SMTP_HOST: process.env.SMTP_HOST,
+  JWT_SECRET: process.env.JWT_SECRET,
 };
