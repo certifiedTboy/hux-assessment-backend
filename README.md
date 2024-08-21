@@ -23,7 +23,6 @@
 - [Account Creation Flow](#Account-Creation-Flow)
 - [Authentication Flow](#Authentication-Handling)
 - [API Documentation](#API-Documentation)
-- [User Flow Design](#Userflow-Design)
 
 <br>
 
