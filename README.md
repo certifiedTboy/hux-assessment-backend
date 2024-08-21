@@ -47,7 +47,7 @@ Refer to env.example file for all enviromental variables
 
 ```bash
 # Clone this project
-$ https://github.com/certifiedTboy/hux-assessment-backend.git
+$ git clone https://github.com/certifiedTboy/hux-assessment-backend.git
 
 # Access
 $ cd hux-assessment-backend
@@ -69,14 +69,12 @@ $ npm run dev (Development server)
 
 - All CRUD operations are available on the API [Documentation](https://documenter.getpostman.com/view/14393972/2sAXjDcuQy)
 
-- If link does not work, copy and paste this address "https://documenter.getpostman.com/view/14393972/2sAXjDcuQy" on the browser to view API documentation
-
 ## Authentication Flow
 
-- Authentication and Authorization is handled with Jsonwebtoken (JWT) and it follows the OAUTH flow standard
-- On successful login, an access token and a refresh token is generated, refresh token is sent as an HTTP only flagged cookie to client with a validity period of 24 hours. The access token is sent as a response data to be used for subsequent requests. The access token has a validity period of 30 Minutes. Tokens are signed with the user unique Id and user-type (ADMIN / USER)
-- All subsequent request that requires authorization must be made with the access token as authorization request header with a Bearer flag.
-- On access token expiration, a request is made to a /refresh-token endpoint with refresh token as req.cookies header.
+- Authentication and Authorization is handled with Jsonwebtoken (JWT) and it follows the OAUTH2 flow standard
+- On successful login, an access token and a refresh token is generated, access token is sent as an HTTP only flagged cookie to client with a validity period of 1 hour. The refresh token is sent as a JSON response. The refresh token has a validity period of 24 hours. Tokens are signed with the user unique Id and user first name, last name and email address
+- All subsequent request that requires authorization must be made with the access token, which is sent as cookie data.
+- On access token expiration, a request is made to a /access-token endpoint with refresh token as authorization header.
 - If refresh token is valid and contains verifiable data, a new access token is sent back to client for subsequent request.
 - on refresh token expiration, client is required to login again to generate new refresh token and access token
 - For testing on POSTMAN agent, refer to [postman interceptor](https://learning.postman.com/docs/sending-requests/cookies/#:~:text=Postman%20can%20capture%20cookies%20for,with%20the%20Postman%20cookie%20jar.) to handle cookie
