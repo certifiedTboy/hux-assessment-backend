@@ -1,4 +1,10 @@
-const { createNewUser, getUserById } = require("../services/userServices");
+const {
+  createNewUser,
+  getUserById,
+  verifyUser,
+  passwordChange,
+  updatePassword,
+} = require("../services/userServices");
 
 // create new user
 const createUser = async (req, res, next) => {
@@ -21,6 +27,20 @@ const createUser = async (req, res, next) => {
   }
 };
 
+const verifyUserAccount = async (req, res, next) => {
+  try {
+    const { token: verificationToken } = req.body;
+    const verifiedUser = await verifyUser(verificationToken);
+
+    return res.status(200).json({
+      message: "User account verified successfully",
+      user: verifiedUser,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // get current user
 const getCurrentUser = async (req, res, next) => {
   try {
@@ -33,4 +53,44 @@ const getCurrentUser = async (req, res, next) => {
   }
 };
 
-module.exports = { createUser, getCurrentUser };
+// password reset request
+const requestPasswordReset = async (req, res, next) => {
+  try {
+    const { email } = req.body;
+
+    const passwordRequestChange = await passwordChange(email);
+
+    if (passwordRequestChange) {
+      return res.status(200).json({
+        message: `Password reset request sent to ${email}`,
+        passwordRequestChange,
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+// update user password
+const updateUserPassword = async (req, res, next) => {
+  try {
+    const { token, password } = req.body;
+
+    const updatedPassword = await updatePassword(token, password);
+
+    return res.status(200).json({
+      message: "Password updated successfully",
+      updatedPassword,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = {
+  createUser,
+  getCurrentUser,
+  verifyUserAccount,
+  requestPasswordReset,
+  updateUserPassword,
+};

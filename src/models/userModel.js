@@ -28,10 +28,10 @@ const userSchema = new Schema(
     verificationTokenExpiresIn: {
       type: Date,
     },
-    resetPasswordToken: {
+    passwordResetToken: {
       type: String,
     },
-    resetPasswordTokenExpiresIn: {
+    passwordResetTokenExpiresIn: {
       type: Date,
     },
   },

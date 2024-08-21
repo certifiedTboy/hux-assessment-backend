@@ -11,4 +11,6 @@ module.exports = {
   EMAIL_USER: process.env.EMAIL_USER,
   SMTP_HOST: process.env.SMTP_HOST,
   JWT_SECRET: process.env.JWT_SECRET,
+  JWT_ACCESS_TOKEN_EXPIRES_IN: process.env.JWT_ACCESS_TOKEN_EXPIRES_IN,
+  JWT_REFRESH_TOKEN_EXPIRES_IN: process.env.JWT_REFRESH_TOKEN_EXPIRES_IN,
 };
