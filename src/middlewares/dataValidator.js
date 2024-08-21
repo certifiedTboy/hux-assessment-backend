@@ -2,7 +2,7 @@ const { check, validationResult } = require("express-validator");
 const CustomErrorHandler = require("../lib/CustomErrorHander");
 
 // validate all body data for new user creation
-const validateCreateUserInput = (req, res, next) => {
+const validateCreateUserInput = () => {
   return [
     check("firstName").notEmpty().withMessage("first name is required"),
     check("lastName").notEmpty().withMessage("last name is required"),
@@ -15,7 +15,7 @@ const validateCreateUserInput = (req, res, next) => {
       .notEmpty()
       .withMessage("password is required")
       .isLength({ min: 8 })
-      .withMessage("password must be 8 characters")
+      .withMessage("password must not be less than 8 characters")
       .matches(/\d/)
       .withMessage("Password must contain at least one number")
       .matches(/[A-Z]/)
@@ -33,6 +33,59 @@ const validateCreateUserInput = (req, res, next) => {
   ];
 };
 
+// validate reset password email
+const validateResetPasswordEmail = () => {
+  return [
+    check("email")
+      .notEmpty()
+      .withMessage("email is required")
+      .isEmail()
+      .withMessage("invalid email address"),
+  ];
+};
+
+// validate update user password data
+const validateUpdateUserPasswordData = () => {
+  return [
+    check("token")
+      .notEmpty()
+      .withMessage("token is required")
+      .isLength({ min: 6, max: 6 })
+      .withMessage("token must be 6 characters"),
+    check("password")
+      .notEmpty()
+      .withMessage("password is required")
+      .isLength({ min: 8 })
+      .withMessage("password must not be less than 8 characters")
+      .matches(/\d/)
+      .withMessage("Password must contain at least one number")
+      .matches(/[A-Z]/)
+      .withMessage("Password must contain at least one uppercase letter")
+      .matches(/[a-z]/)
+      .withMessage("Password must contain at least one lowercase letter")
+      .matches(/[@$!%*?&#]/)
+      .withMessage("Password must contain at least one special character"),
+    check("confirmPassword").custom((value, { req }) => {
+      if (value !== req.body.password) {
+        throw new CustomErrorHandler("Passwords do not match", 400);
+      }
+      return true;
+    }),
+  ];
+};
+
+// validate verification and password reset tokens
+const validateToken = () => {
+  return [
+    check("token")
+      .notEmpty()
+      .withMessage("token is required")
+      .isLength({ min: 6, max: 6 })
+      .withMessage("token must be 6 characters"),
+  ];
+};
+
+// check for all validator errors
 const checkValidationErrors = (req, res, next) => {
   const errors = validationResult(req);
 
@@ -43,4 +96,10 @@ const checkValidationErrors = (req, res, next) => {
   next();
 };
 
-module.exports = { validateCreateUserInput, checkValidationErrors };
+module.exports = {
+  validateCreateUserInput,
+  validateToken,
+  validateResetPasswordEmail,
+  validateUpdateUserPasswordData,
+  checkValidationErrors,
+};

@@ -7,9 +7,7 @@ const hashPassword = (plainTextPasword) => {
 };
 
 const verifyPassword = (plainTextPasword, hashedPassword) => {
-  if (!bcrypt.compareSync(plainTextPasword, hashedPassword)) {
-    throw new CustomErrorHandler("invalid login credentials", 401);
-  }
+  return bcrypt.compareSync(plainTextPasword, hashedPassword);
 };
 
 module.exports = { hashPassword, verifyPassword };
