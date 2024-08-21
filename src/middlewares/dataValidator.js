@@ -85,6 +85,19 @@ const validateToken = () => {
   ];
 };
 
+// validate body data for new contact creation
+const validateContactCreate = () => {
+  return [
+    check("firstName").notEmpty().withMessage("first name is required"),
+    check("lastName").notEmpty().withMessage("last name is required"),
+    check("phoneNumber")
+      .notEmpty()
+      .withMessage("phone number is required")
+      .matches(/^\+?[1-9]\d{1,14}$/)
+      .withMessage("Please enter a valid phone number."),
+  ];
+};
+
 // check for all validator errors
 const checkValidationErrors = (req, res, next) => {
   const errors = validationResult(req);
@@ -101,5 +114,6 @@ module.exports = {
   validateToken,
   validateResetPasswordEmail,
   validateUpdateUserPasswordData,
+  validateContactCreate,
   checkValidationErrors,
 };
