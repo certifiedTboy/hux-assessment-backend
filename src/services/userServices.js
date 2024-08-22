@@ -38,7 +38,7 @@ const createNewUser = async (userData) => {
     await userExist.save();
 
     // send new verification token to user email
-    // await sendVerificationToken(userExist.email, userExist.verificationToken);
+    await sendVerificationToken(userExist.email, userExist.verificationToken);
 
     // return new user information
     return { email: userExist.email };
@@ -50,7 +50,7 @@ const createNewUser = async (userData) => {
     new Date() - userExist.verificationTokenExpiresIn < 60 * 60 * 1000
   ) {
     // send existing verification token to user email
-    // await sendVerificationToken(userExist.email, userExist.verificationToken);
+    await sendVerificationToken(userExist.email, userExist.verificationToken);
 
     // return new user information
     return { email: userExist.email };

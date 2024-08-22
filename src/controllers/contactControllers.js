@@ -25,6 +25,7 @@ const createNewContact = async (req, res, next) => {
         .json({ message: "contact created successfully", createdContact });
     }
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };
@@ -44,7 +45,7 @@ const updateUserContact = async (req, res, next) => {
       contactId
     );
 
-    if (updateContact) {
+    if (updatedContact) {
       return res
         .status(200)
         .json({ message: "contact updated successfully", updatedContact });

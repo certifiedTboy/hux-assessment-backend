@@ -58,9 +58,15 @@ $ npm install
 # Install nodemon as Dev dependencies
 $ npm install -D nodemon
 
+# Install jest & Supertest For automated tested
+$ npm install -D jest supertest
+
 # Run the project
 $ npm start (Production server)
 $ npm run dev (Development server)
+
+# Run test
+$ npm test
 
 # The server will be initialized on the <http://localhost:3001>
 ```
@@ -84,6 +90,6 @@ $ npm run dev (Development server)
 
 All API http request endpoints are available on [https://documenter.getpostman.com/view/14393972/2sA2r6YQLY](https://documenter.getpostman.com/view/14393972/2sA2r6YQLY)
 
-Use [https://vzy-api-oux5.onrender.com/api/v1](https://vzy-api-oux5.onrender.com/api/v1) for live testing
+<!-- Use [https://vzy-api-oux5.onrender.com/api/v1](https://vzy-api-oux5.onrender.com/api/v1) for live testing -->
 
 <a href="#top">Back to top</a>

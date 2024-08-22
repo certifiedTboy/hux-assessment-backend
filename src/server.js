@@ -1,7 +1,7 @@
 const http = require("http");
 const app = require("./app");
 const httpServer = http.createServer(app);
-const connectDb = require("./helpers/dbConfig");
+const { connectDb } = require("./helpers/dbConfig");
 const { PORT } = require("./config/index");
 
 const startServer = async () => {

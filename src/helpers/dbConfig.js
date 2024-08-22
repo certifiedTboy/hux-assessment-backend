@@ -13,4 +13,8 @@ const connectDb = async () => {
   await mongoose.connect(MONGO_URI);
 };
 
-module.exports = connectDb;
+const closeDbConnection = async () => {
+  await mongoose.connection.close();
+};
+
+module.exports = { connectDb, closeDbConnection };

@@ -18,6 +18,7 @@ const loginUser = async (req, res, next) => {
 
       // save accessToken on client cookie storage
       return res
+        .status(200)
         .cookie("a_t", authCredentials.accessToken, cookieOptions)
         .json({
           message: "login successful",
