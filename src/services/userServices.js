@@ -10,7 +10,7 @@ const CustomErrorHandler = require("../lib/CustomErrorHander");
 // create new user account
 const createNewUser = async (userData) => {
   // check if user with email already exist
-  const userExist = await getUserByEmail(userData.email);
+  const userExist = await getUserByEmailForRegistration(userData.email);
 
   // throw 409 error if user already exist and is verified
   if (userExist?.isVerified) {
@@ -73,7 +73,7 @@ const createNewUser = async (userData) => {
   }
 
   // send verification token to user email if registration is successful
-  // await sendVerificationToken(newUser.email, newUser.verificationToken);
+  await sendVerificationToken(newUser.email, newUser.verificationToken);
   // return new user information
   return { email: newUser.email };
 };
@@ -86,6 +86,14 @@ const getUserById = async (userId) => {
   }
 
   throw new CustomErrorHandler("user not found", 404);
+};
+
+// check if user exist on database by email
+const getUserByEmailForRegistration = async (email) => {
+  const user = await User.findOne({ email });
+  if (user) {
+    return user;
+  }
 };
 
 // check if user exist on database by email

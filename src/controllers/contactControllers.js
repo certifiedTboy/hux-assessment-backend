@@ -25,7 +25,6 @@ const createNewContact = async (req, res, next) => {
         .json({ message: "contact created successfully", createdContact });
     }
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
