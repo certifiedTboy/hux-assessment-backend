@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 module.exports = {
-  PORT: process.env.PORT,
+  PORT: process.env.PORT || 3001,
   MONGO_URI: process.env.DEVELOPMENT_MONGO_URI,
   EMAIL_CLIENT_ID: process.env.EMAIL_CLIENT_ID,
   EMAIL_CLIENT_SECRET: process.env.EMAIL_CLIENT_SECRET,
