@@ -12,7 +12,12 @@ app.use(express.json());
 app.use(cookieParser());
 
 //global express middleware configuration for cors
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(
+  cors({
+    origin: "https://hux-assessment-frontend-iota.vercel.app",
+    credentials: true,
+  })
+);
 
 //global express middleware configuration for api routes
 app.use("/api/v1", apiV1Router);

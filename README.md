@@ -90,6 +90,6 @@ $ npm test
 
 All API http request endpoints are available on [https://documenter.getpostman.com/view/14393972/2sA2r6YQLY](https://documenter.getpostman.com/view/14393972/2sA2r6YQLY)
 
-<!-- Use [https://vzy-api-oux5.onrender.com/api/v1](https://vzy-api-oux5.onrender.com/api/v1) for live testing -->
+Use [https://hux-assessment-backend-oay6.onrender.com](https://hux-assessment-backend-oay6.onrender.com) for live testing
 
 <a href="#top">Back to top</a>
